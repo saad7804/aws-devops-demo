@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxops
+  namespace: fluxops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fluxops
+  template:
+    metadata:
+      labels:
+        app: fluxops
+    spec:
+      containers:
+        - name: fluxops
+          image: saadmomin7804/fluxops:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

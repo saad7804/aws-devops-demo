@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-50 text-navy-900 transition-colors duration-300;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark body {
+    @apply bg-navy-950 text-navy-100;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-navy-100 dark:bg-navy-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-navy-300 dark:bg-navy-700 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-navy-400 dark:bg-navy-600;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white dark:bg-navy-900 border border-navy-200 dark:border-navy-800 rounded-2xl shadow-sm transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-500 hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium border border-navy-300 dark:border-navy-700 text-navy-700 dark:text-navy-200 hover:bg-navy-100 dark:hover:bg-navy-800 transition-all duration-300;
+  }
+
+  .terminal {
+    @apply bg-navy-950 text-navy-100 rounded-xl border border-navy-800 font-mono text-sm;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-navy-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-navy-900 dark:text-navy-100 placeholder-navy-400 dark:placeholder-navy-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}
