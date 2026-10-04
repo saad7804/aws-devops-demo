@@ -21,6 +21,17 @@ resource "aws_ecs_task_definition" "app" {
         }
       ]
 
+      secrets = [
+        {
+          name      = "DEMO_EMAIL"
+          valueFrom = "arn:aws:secretsmanager:ap-south-1:888869353635:secret:aws-devops-demo/demo-account-bsR6mz:email::"
+        },
+        {
+          name      = "DEMO_PASSWORD"
+          valueFrom = "arn:aws:secretsmanager:ap-south-1:888869353635:secret:aws-devops-demo/demo-account-bsR6mz:password::"
+        }
+      ]
+
       logConfiguration = {
         logDriver = "awslogs"
 
@@ -69,7 +80,8 @@ resource "aws_ecs_service" "app" {
 
   depends_on = [
     aws_lb_listener.http,
-    aws_iam_role_policy_attachment.ecs_task_execution
+    aws_iam_role_policy_attachment.ecs_task_execution,
+    aws_iam_role_policy.ecs_secrets
   ]
 
   tags = {

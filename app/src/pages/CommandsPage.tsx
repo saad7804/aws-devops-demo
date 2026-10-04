@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Search, Filter, Bookmark } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import CommandCard from "@/components/CommandCard";
 import EmptyState from "@/components/EmptyState";
@@ -44,9 +44,11 @@ export default function CommandsPage() {
 
   const filtered = useMemo(() => {
     const lower = search.toLowerCase();
+
     return commands.filter((cmd) => {
       const matchesCategory =
         activeCategory === "All" || cmd.category === activeCategory;
+
       const matchesSearch =
         !search ||
         cmd.title.toLowerCase().includes(lower) ||
@@ -54,6 +56,7 @@ export default function CommandsPage() {
         cmd.description.toLowerCase().includes(lower) ||
         cmd.category.toLowerCase().includes(lower) ||
         cmd.example.toLowerCase().includes(lower);
+
       return matchesCategory && matchesSearch;
     });
   }, [search, activeCategory]);
@@ -78,6 +81,7 @@ export default function CommandsPage() {
 
       <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
         <Filter className="w-4 h-4 text-navy-400 flex-shrink-0" />
+
         {filterOptions.map((cat) => (
           <button
             key={cat}
@@ -95,7 +99,8 @@ export default function CommandsPage() {
 
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm text-navy-500 dark:text-navy-400">
-          Showing {filtered.length} command{filtered.length !== 1 ? "s" : ""}
+          Showing {filtered.length} command
+          {filtered.length !== 1 ? "s" : ""}
         </p>
       </div>
 
@@ -114,7 +119,7 @@ export default function CommandsPage() {
               command={cmd}
               isSaved={isSaved(cmd.id)}
               onToggleSave={toggleSave}
-            />
+           />
           ))}
         </div>
       )}

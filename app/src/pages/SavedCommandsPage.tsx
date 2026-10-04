@@ -10,9 +10,10 @@ import { useSavedCommands, getSavedCommands } from "@/hooks/useSavedCommands";
 type FilterCategory = "All" | CommandCategory;
 
 export default function SavedCommandsPage() {
-  const { savedIds, toggleSave, removeSaved, clearAll } = useSavedCommands();
+  const { savedIds, removeSaved, clearAll } = useSavedCommands();
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState<FilterCategory>("All");
+  const [activeCategory, setActiveCategory] =
+    useState<FilterCategory>("All");
 
   const savedCommands = useMemo(
     () => getSavedCommands(savedIds, commands),
@@ -21,15 +22,18 @@ export default function SavedCommandsPage() {
 
   const filtered = useMemo(() => {
     const lower = search.toLowerCase();
+
     return savedCommands.filter((cmd) => {
       const matchesCategory =
         activeCategory === "All" || cmd.category === activeCategory;
+
       const matchesSearch =
         !search ||
         cmd.title.toLowerCase().includes(lower) ||
         cmd.command.toLowerCase().includes(lower) ||
         cmd.description.toLowerCase().includes(lower) ||
         cmd.category.toLowerCase().includes(lower);
+
       return matchesCategory && matchesSearch;
     });
   }, [savedCommands, search, activeCategory]);
@@ -65,6 +69,7 @@ export default function SavedCommandsPage() {
                 placeholder="Search saved commands..."
               />
             </div>
+
             <button
               onClick={clearAll}
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/30 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all duration-300"
@@ -91,7 +96,8 @@ export default function SavedCommandsPage() {
           </div>
 
           <p className="text-sm text-navy-500 dark:text-navy-400 mb-4">
-            {filtered.length} saved command{filtered.length !== 1 ? "s" : ""}
+            {filtered.length} saved command
+            {filtered.length !== 1 ? "s" : ""}
           </p>
 
           {filtered.length === 0 ? (

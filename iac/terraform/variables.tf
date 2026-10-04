@@ -19,5 +19,5 @@ variable "environment" {
 variable "container_image" {
   description = "Docker image used by the ECS task"
   type        = string
-  default     = "public.ecr.aws/nginx/nginx:stable-alpine"
+  default     = "888869353635.dkr.ecr.ap-south-1.amazonaws.com/aws-devops-demo:fluxops-auth-v1"
 }

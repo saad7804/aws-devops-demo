@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { Terminal } from "lucide-react";
 
 const navLinks = [
   { label: "Home", to: "/" },

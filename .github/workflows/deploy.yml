@@ -30,6 +30,13 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
 
+      - name: Install dependencies and validate application
+        working-directory: app
+        run: |
+          npm ci
+          npm run lint
+          npm run typecheck
+
       - name: Login to Amazon ECR
         id: ecr
         uses: aws-actions/amazon-ecr-login@v2
